@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROJECT 0109</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 50px;
+    color: #fff;
+    overflow-x: hidden;
+
+    /* Full background image */
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+                url('images/pic3.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.jordan {
+    position: fixed;
+    bottom: -50px;
+    width: 60px;
+    animation: floatUp 8s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(-900px) rotate(360deg); opacity: 0; }
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+h2 { color: #ff4d6d; }
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yesBtn { background-color: #ff4d6d; color: white; }
+#noBtn { background-color: #aaa; position: relative; }
+
+.hidden { display: none; }
+
+img {
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="questionBox" class="container">
+    <h2>you thought this was actually a project oppsie</h2>
+    <p>but since you here just press yes, don’t overthink it</p>
+    <button id="yesBtn" onclick="showLove()">Yes</button>
+    <button id="noBtn" onmouseover="moveNo()" onclick="growYes()">No</button>
+</div>
+
+<div id="loveBox" class="container hidden">
+    <h2>shame you've been tricked</h2>
+
+    <p>
+       So, plot twist… this was never really a project. I may have convinced you that I was
+        busy working on something for myself, but the truth is,
+    </p>
+
+    <p>
+        You asked me what I love about you… and I didn’t answer properly then,
+        but it’s not something I could’ve just said in one sentence anyway.
+    </p>
+
+    <p>
+         I was actually putting this together for you. I know you haven't had the best day, and I wanted to do something a little 
+         different to remind you that you're appreciated. 
+    </p>
+
+    <p>
+        Your eyes… yeah I notice them more than you think I actually do. And your smile ahh shame its cute tbh 
+        it actually changes my mood every time, it’s kind of unfair.
+    </p>
+
+    <p>
+        I like the way you are about the things you care about… your family, your mindset, your drive.
+        You’re just you. No forcing it. That’s rare.
+    </p>
+
+    <p>
+        I know I can't magically make everything better, but if I can put a smile on your face, 
+        even for a little while, then I've done what I wanted to do. 
+    </p>
+
+    <p>
+        And I’m not saying any of this to force anything or make it deep…
+        I just thought you should actually know.
+    </p>
+
+    <p>
+        You deserve good days, genuine happiness and little reminders that someone is rooting for you. 
+        So consider this your little corner of happiness, made with you in mind.
+    </p>
+
+    <img src="images/pic1.jpg" alt="Us">
+    <img src="images/pic2.jpg" alt="Us">
+</div>
+
+<!-- Background music -->
+<audio id="bgMusic" loop>
+  <source src="audio/song.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+let clickCount = 0;
+
+function growYes() {
+    clickCount++;
+    let yesBtn = document.getElementById("yesBtn");
+    let noBtn = document.getElementById("noBtn");
+
+    let size = 18 + (clickCount * 10);
+    yesBtn.style.fontSize = size + "px";
+    yesBtn.style.padding = (10 + clickCount * 5) + "px";
+
+    if (clickCount >= 3) {
+        noBtn.style.display = "none";
+    }
+}
+
+function moveNo() {
+    let noBtn = document.getElementById("noBtn");
+    noBtn.style.position = "absolute";
+    noBtn.style.top = Math.random() * 200 + "px";
+    noBtn.style.left = Math.random() * 200 + "px";
+}
+
+function showLove() {
+    document.getElementById("questionBox").classList.add("hidden");
+    document.getElementById("loveBox").classList.remove("hidden");
+
+    // Play music when he presses Yes
+    document.getElementById("bgMusic").play();
+}
+
+/* Floating Jordans generator */
+function createJordan() {
+    const img = document.createElement("img");
+    img.src = "images/jordan.png"; // floating Jordan
+    img.classList.add("jordan");
+    img.style.left = Math.random() * 100 + "vw";
+    img.style.width = (40 + Math.random() * 40) + "px";
+    document.body.appendChild(img);
+    setTimeout(() => { img.remove(); }, 8000);
+}
+setInterval(createJordan, 800);
+</script>
+
+</body>
+</html>
